@@ -1,0 +1,36 @@
+
+class Solution {
+public:
+int firstTree(TreeNode* root)
+    {
+        if(root == NULL)
+        {
+            return 0;
+        }
+        int ans;
+        ans = firstTree(root->left);
+        int j =firstTree(root->right);
+        if(ans ==-1 || j==-1)
+        {
+            return -1;
+        }
+        if(max(ans,j)-min(ans,j)>1)
+        {
+            return -1;
+        }
+        return max(ans,j)+1;
+    }
+    bool isBalanced(TreeNode* root) {
+        if(root ==NULL)
+        {
+            return true;
+        }
+        int a = firstTree(root);
+        if(a ==-1)
+        {
+            return false;
+        }
+        return true;
+    }
+    
+};
